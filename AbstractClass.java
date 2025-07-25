@@ -1,32 +1,41 @@
-package Task1;
+abstract class PaymentMethod {
+    abstract void pay();  // abstract method
 
-abstract class Shape {
-	 abstract double area();
-	}
-	class Circle extends Shape {
-	int radius;
-	 Circle(int r) {
-	 radius = r;
-	 }
-	 double area() {
-	 return Math.PI * radius * radius;
-	 }
-	}
-	class Rectangle extends Shape {
-	 double length, bredth;
-	 Rectangle(double l, double b) {
-	 length = l;
-	 bredth = b;
-	 }
-	 double area() {
-	 return length * bredth;
-	 }
-	}
-	public class AbstractClass {
-	 public static void main(String[] args) {
-	 Shape sh1 = new Circle(5);
-	 Shape sh2 = new Rectangle(4, 6);
-	 System.out.println("Area of circle is: " + sh1.area());
-	 System.out.println("Area of rectangle is: " + sh2.area());
-	 }
-	}
+    void displayPaymentType() {  // non-abstract method
+        System.out.println("Processing payment...");
+    }
+}
+
+class CreditCard extends PaymentMethod {
+    void pay() {
+        System.out.println("Paid using Credit Card");
+    }
+}
+
+class UPI extends PaymentMethod {
+    void pay() {
+        System.out.println("Paid using UPI");
+    }
+}
+
+class Cash extends PaymentMethod {
+    void pay() {
+        System.out.println("Paid using Cash");
+    }
+}
+
+public class AbstractClass {
+    public static void main(String[] args) {
+        PaymentMethod method1 = new CreditCard();
+        method1.displayPaymentType();
+        method1.pay();
+
+        PaymentMethod method2 = new UPI();
+        method2.displayPaymentType();
+        method2.pay();
+
+        PaymentMethod method3 = new Cash();
+        method3.displayPaymentType();
+        method3.pay();
+    }
+}
